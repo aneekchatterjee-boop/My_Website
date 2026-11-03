@@ -2087,3 +2087,80 @@ input[type='range']::-moz-range-thumb {
 main {
   overflow-x: clip;
 }
+
+/* ───────── project card hover effects ───────── */
+.p-card {
+  --rx: 0deg;
+  --ry: 0deg;
+  --mx: 50%;
+  --my: 50%;
+  perspective: 1600px;
+}
+.p-card-inner {
+  position: relative;
+  overflow: hidden;
+}
+.p-tilt {
+  transform: rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.3, 1);
+  will-change: transform;
+}
+.p-info,
+.p-demo {
+  position: relative;
+  z-index: 1;
+}
+.p-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.4s;
+  background:
+    radial-gradient(520px circle at var(--mx) var(--my), color-mix(in srgb, var(--accent) 22%, transparent), transparent 45%),
+    radial-gradient(220px circle at var(--mx) var(--my), rgba(255, 255, 255, 0.06), transparent 60%);
+}
+/* glowing border that follows the cursor */
+.p-card-inner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+  background: radial-gradient(380px circle at var(--mx) var(--my), var(--accent), transparent 40%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s;
+  z-index: 2;
+}
+.p-name {
+  transition: transform 0.5s cubic-bezier(0.2, 0.9, 0.3, 1), text-shadow 0.4s;
+}
+.p-pipe li {
+  transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+.p-demo {
+  transition: transform 0.5s cubic-bezier(0.2, 0.9, 0.3, 1), box-shadow 0.4s, border-color 0.4s;
+}
+.p-card.hovering .p-glow,
+.p-card.hovering .p-card-inner::after {
+  opacity: 1;
+}
+.p-card.hovering .p-name {
+  transform: translateX(6px);
+  text-shadow: 0 0 40px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+.p-card.hovering .p-card.hovering .p-pipe li:nth-child(1) { transform: translateY(-2px); transition-delay: 0s; }
+.p-card.hovering .p-pipe li:nth-child(2) { transform: translateY(-2px); transition-delay: 0.05s; }
+.p-card.hovering .p-pipe li:nth-child(3) { transform: translateY(-2px); transition-delay: 0.1s; }
+.p-card.hovering .p-pipe li:nth-child(4) { transform: translateY(-2px); transition-delay: 0.15s; }
+.p-card.hovering .p-demo {
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
+  box-shadow: 0 30px 60px -30px color-mix(in srgb, var(--accent) 50%, transparent);
+  transform: translateY(-3px);
+}
