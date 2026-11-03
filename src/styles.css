@@ -2164,3 +2164,17 @@ main {
   box-shadow: 0 30px 60px -30px color-mix(in srgb, var(--accent) 50%, transparent);
   transform: translateY(-3px);
 }
+
+/* ambient constellation + grid comets (see BackgroundFX.jsx) */
+.bg-fx {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.9;
+}
+@media (max-width: 640px) {
+  .bg-fx {
+    opacity: 0.6;
+  }
+}

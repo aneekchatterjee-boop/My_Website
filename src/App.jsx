@@ -12,6 +12,7 @@ import Contact from './components/Contact.jsx'
 import Footer from './components/Footer.jsx'
 import Terminal from './components/Terminal.jsx'
 import Cursor from './components/Cursor.jsx'
+import BackgroundFX from './components/BackgroundFX.jsx'
 import { reducedMotion, setLenis, getLenis } from './lib.js'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -85,6 +86,7 @@ export default function App() {
   return (
     <>
       <div className="bg-aurora" aria-hidden="true" />
+      <BackgroundFX />
       <div className="bg-grain" aria-hidden="true" />
       <Cursor />
       <Nav onTerminal={() => setTermOpen(true)} />
