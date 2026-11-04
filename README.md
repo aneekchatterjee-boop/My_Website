@@ -19,7 +19,8 @@ My personal portfolio — IT student at VIT, building backend systems, real-time
   - **SyncPad** — two live editors kept in sync by a small CRDT; take one offline, edit both, reconnect and they merge.
   - **Ephemera** — real AES-256-GCM encryption with a PBKDF2 passkey-derived key via the Web Crypto API, one-time
     self-destructing links.
-- **Ambient background** — drifting constellation with travelling data packets and comets along the grid.
+- **Ambient background** — a line-art satellite drifts and tumbles across a starfield, rebounding off the screen edges
+  with a ripple, leaving a dotted orbit trail and pinging radio waves from its dish.
 - **Motion** — Lenis smooth scroll, GSAP scroll-triggered reveals, stacked project cards with 3D hover tilt, a
   self-drawing journey timeline, magnetic buttons and a custom cursor.
 - **Hidden terminal** — press <kbd>`</kbd> anywhere and type `help`.
