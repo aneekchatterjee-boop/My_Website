@@ -52,7 +52,7 @@ export default function BackgroundFX() {
       canvas.style.height = `${h}px`
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
 
-      sat.s = w < 640 ? 0.62 : w < 1100 ? 0.85 : 1
+      sat.s = w < 640 ? 1 : w < 1100 ? 1.3 : 1.6
       sat.R = 66 * sat.s // collision radius (covers panels at any rotation)
       sat.x = Math.min(Math.max(sat.x || w * 0.3, sat.R), w - sat.R)
       sat.y = Math.min(Math.max(sat.y || h * 0.35, sat.R), h - sat.R)
@@ -89,7 +89,7 @@ export default function BackgroundFX() {
 
       // soft halo
       const halo = ctx.createRadialGradient(0, 0, 0, 0, 0, 90)
-      halo.addColorStop(0, rgba(c2, 0.1))
+      halo.addColorStop(0, rgba(c2, 0.22))
       halo.addColorStop(1, rgba(c2, 0))
       ctx.fillStyle = halo
       ctx.beginPath()
@@ -97,8 +97,8 @@ export default function BackgroundFX() {
       ctx.fill()
 
       // struts
-      ctx.strokeStyle = rgba(c2, 0.55)
-      ctx.lineWidth = 1.4
+      ctx.strokeStyle = rgba(c2, 0.85)
+      ctx.lineWidth = 1.6
       ctx.beginPath()
       ctx.moveTo(-14, 0)
       ctx.lineTo(-22, 0)
@@ -112,17 +112,17 @@ export default function BackgroundFX() {
         const pw = 44
         const ph = 22
         const g = ctx.createLinearGradient(x0, -ph / 2, x0 + pw, ph / 2)
-        g.addColorStop(0, rgba(c1, 0.22))
-        g.addColorStop(1, rgba(c2, 0.12))
+        g.addColorStop(0, rgba(c1, 0.38))
+        g.addColorStop(1, rgba(c2, 0.24))
         ctx.fillStyle = g
-        ctx.strokeStyle = rgba(c1, 0.85)
-        ctx.lineWidth = 1.3
+        ctx.strokeStyle = rgba(c1, 1)
+        ctx.lineWidth = 1.5
         ctx.beginPath()
         ctx.rect(x0, -ph / 2, pw, ph)
         ctx.fill()
         ctx.stroke()
-        ctx.strokeStyle = rgba(c1, 0.35)
-        ctx.lineWidth = 0.8
+        ctx.strokeStyle = rgba(c1, 0.6)
+        ctx.lineWidth = 0.9
         ctx.beginPath()
         for (let i = 1; i < 4; i++) {
           ctx.moveTo(x0 + (pw / 4) * i, -ph / 2)
@@ -134,7 +134,7 @@ export default function BackgroundFX() {
         // glint sweeping across the panel
         const gx = x0 + ((t * 0.04 + (side > 0 ? 22 : 0)) % (pw + 30)) - 15
         if (gx > x0 && gx < x0 + pw) {
-          ctx.strokeStyle = 'rgba(255,255,255,0.35)'
+          ctx.strokeStyle = 'rgba(255,255,255,0.6)'
           ctx.lineWidth = 1
           ctx.beginPath()
           ctx.moveTo(gx, -ph / 2)
@@ -145,19 +145,19 @@ export default function BackgroundFX() {
 
       // body
       const bg = ctx.createLinearGradient(-14, -18, 14, 18)
-      bg.addColorStop(0, rgba(c1, 0.35))
-      bg.addColorStop(1, rgba(c3, 0.25))
+      bg.addColorStop(0, rgba(c1, 0.55))
+      bg.addColorStop(1, rgba(c3, 0.4))
       ctx.fillStyle = '#0d0d16'
-      ctx.strokeStyle = rgba(c2, 0.9)
-      ctx.lineWidth = 1.5
+      ctx.strokeStyle = rgba(c2, 1)
+      ctx.lineWidth = 1.8
       ctx.beginPath()
       ctx.roundRect(-14, -18, 28, 36, 5)
       ctx.fill()
       ctx.fillStyle = bg
       ctx.fill()
       ctx.stroke()
-      ctx.strokeStyle = rgba(c2, 0.35)
-      ctx.lineWidth = 0.8
+      ctx.strokeStyle = rgba(c2, 0.6)
+      ctx.lineWidth = 0.9
       ctx.beginPath()
       ctx.moveTo(-14, -6)
       ctx.lineTo(14, -6)
@@ -166,8 +166,8 @@ export default function BackgroundFX() {
       ctx.stroke()
 
       // dish + antenna on top
-      ctx.strokeStyle = rgba(c2, 0.85)
-      ctx.lineWidth = 1.4
+      ctx.strokeStyle = rgba(c2, 1)
+      ctx.lineWidth = 1.6
       ctx.beginPath()
       ctx.moveTo(0, -18)
       ctx.lineTo(0, -24)
@@ -257,7 +257,7 @@ export default function BackgroundFX() {
       // dotted orbit trail, fading out behind the satellite
       for (let i = 0; i < trail.length; i += 4) {
         const k = i / trail.length
-        ctx.fillStyle = rgba(colors[1], k * 0.45)
+        ctx.fillStyle = rgba(colors[1], k * 0.7)
         ctx.beginPath()
         ctx.arc(trail[i][0], trail[i][1], 0.6 + k * 0.9, 0, Math.PI * 2)
         ctx.fill()
@@ -271,7 +271,7 @@ export default function BackgroundFX() {
         for (let i = 0; i < 2; i++) {
           const rr = r.r - i * 22
           if (rr <= 0) continue
-          ctx.strokeStyle = rgba(colors[2], r.life * 0.5)
+          ctx.strokeStyle = rgba(colors[2], r.life * 0.75)
           ctx.lineWidth = 1.2
           ctx.beginPath()
           ctx.arc(r.x, r.y, rr, 0, Math.PI * 2)
@@ -293,7 +293,7 @@ export default function BackgroundFX() {
         ctx.translate(sat.x, sat.y)
         ctx.rotate(sat.a)
         ctx.scale(sat.s, sat.s)
-        ctx.strokeStyle = rgba(colors[1], life * 0.6)
+        ctx.strokeStyle = rgba(colors[1], life * 0.85)
         ctx.lineWidth = 1.3
         ctx.beginPath()
         ctx.arc(0, -40, 10 + wv.r, -Math.PI / 2 - 0.55, -Math.PI / 2 + 0.55)

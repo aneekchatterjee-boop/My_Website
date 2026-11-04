@@ -2171,10 +2171,9 @@ main {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.9;
 }
 @media (max-width: 640px) {
   .bg-fx {
-    opacity: 0.6;
+    opacity: 0.85;
   }
 }
